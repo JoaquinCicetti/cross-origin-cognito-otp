@@ -1,0 +1,36 @@
+{
+  "name": "cross-region-cognito",
+  "version": "1.0.0",
+  "description": "send otp accross different regions to workaround local restrictions",
+  "main": "serverless.ts",
+  "scripts": {
+    "test": "vitest run",
+    "deploy": "serverless deploy --force",
+    "lint": "eslint '*/**/*.{ts,tsx}' --quiet --fix"
+  },
+  "engines": {
+    "node": ">=18.16.1"
+  },
+  "dependencies": {
+    "@aws-crypto/client-node": "^4.0.0",
+    "@aws-sdk/client-ses": "^3.504.0",
+    "base64-js": "^1.5.1",
+    "dotenv": "^16.3.1",
+    "vitest": "^1.0.4"
+  },
+  "devDependencies": {
+    "@serverless/typescript": "^3.38.0",
+    "@types/aws-lambda": "^8.10.130",
+    "@types/node": "^20.10.4",
+    "@typescript-eslint/eslint-plugin": "^6.14.0",
+    "@typescript-eslint/parser": "^6.14.0",
+    "esbuild": "^0.14.54",
+    "eslint": "^8.56.0",
+    "serverless": "^3.38.0",
+    "serverless-esbuild": "^1.50.0",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^3.14.2",
+    "typescript": "^4.9.5"
+  },
+  "author": "Joaquin Cicetti <jcicetti@growcast.io>"
+}
