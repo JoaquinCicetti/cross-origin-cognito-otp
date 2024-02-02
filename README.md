@@ -1,21 +1,21 @@
 # Cross-Region Cognito OTP Delivery Project
 
-Este proyecto implementa una función Lambda de AWS que se dispara en lugar del método por defecto para los envíos de OTP (One Time Password) de Amazon Cognito. El objetivo principal es permitir el uso de un sender personalizado para los correos electrónicos de OTP, resolviendo así el problema de entrega de correos a ciertos dominios empresariales en Indonesia.
+This project implements an AWS Lambda function that is triggered instead of the default method for OTP (One Time Password) deliveries from Amazon Cognito. The main goal is to enable the use of a custom sender for OTP emails, thus solving the problem of email delivery to certain business domains in Indonesia.
 
-## Problema
+## Problem
 
-El pool de usuarios de Cognito está ubicado en la región `ap-southeast-1`. Al mover los entornos a `ap-southeast-3`, se detectó que algunos correos empresariales en Indonesia no estaban recibiendo los OTPs. Esto se debía a restricciones en la zona de envío del Simple Email Service (SES) de AWS.
+The Cognito user pool is located in the `ap-southeast-1` region. When moving environments to `ap-southeast-3`, it was detected that some business emails in Indonesia were not receiving the OTPs. This was due to restrictions in the sending zone of AWS's Simple Email Service (SES).
 
-## Solución
+## Solution
 
-La función Lambda desarrollada intercepta los eventos de Cognito y reenvía los correos electrónicos de OTP utilizando SES, permitiendo seleccionar la región de envío y personalizar completamente el cuerpo del mensaje. Esto asegura la entrega efectiva de los OTPs a todos los usuarios, independientemente de las restricciones regionales de sus correos electrónicos empresariales.
+The developed Lambda function intercepts Cognito events and forwards OTP emails using SES, allowing the selection of the sending region and fully customizing the message body. This ensures the effective delivery of OTPs to all users, regardless of the regional restrictions of their business emails.
 
-### Características Clave
+### Key Features
 
-- **Selección de la Región de SES**: Permite elegir la región desde la cual se enviarán los correos electrónicos, superando las limitaciones de entrega en ciertas áreas.
-- **Personalización del Mensaje**: Ofrece la capacidad de personalizar completamente el cuerpo del correo electrónico de OTP, mejorando la experiencia del usuario final.
-- **Integración con KMS**: Se creó una clave en AWS Key Management Service (KMS) para encriptar los datos desde Cognito, y se configuraron los permisos necesarios para que Cognito pueda utilizar esta clave.
+- **SES Region Selection**: Allows choosing the region from which the emails will be sent, overcoming delivery limitations in certain areas.
+- **Message Customization**: Offers the ability to fully customize the OTP email body, enhancing the end-user experience.
+- **Integration with KMS**: A key was created in AWS Key Management Service (KMS) to encrypt data from Cognito, and the necessary permissions were configured for Cognito to use this key.
 
-### Documentación de Referencia
+### Reference Documentation
 
-Para más detalles sobre cómo desencriptar el código OTP y manejar los eventos de Cognito, consulte la documentación oficial de AWS: [Custom Email Sender Lambda Trigger](https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-custom-email-sender.html).
+For more details on how to decrypt the OTP code and handle Cognito events, consult the official AWS documentation: [Custom Email Sender Lambda Trigger](https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-custom-email-sender.html).
