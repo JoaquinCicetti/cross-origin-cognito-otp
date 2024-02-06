@@ -3,10 +3,10 @@ import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
 import { decryptCode } from 'src/utils/crypto-decrypt';
 import { getTranslatedBody, getTranslatedSubject } from 'src/utils/translate';
 
-const fromRegion = process.env.fromRegion;
+const toRegion = process.env.toRegion;
 
 export const handler = async (event: CustomEmailSenderTriggerEvent) => {
-  const sesClient = new SESClient({ region: fromRegion });
+  const sesClient = new SESClient({ region: toRegion });
 
   // Extract the verification code and email address from the event
   const emailAddress = event.request.userAttributes['email'];
